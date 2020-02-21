@@ -1,7 +1,21 @@
 -- mpvSockets, one socket per instance, removes socket on exit
 
 local utils = require 'mp.utils'
-tempDir = "/tmp"
+
+local function getTempPath()
+    local directorySeperator = package.config:match("([^\n]*)\n?")
+    local exampleTempFilePath = os.tmpname()
+
+    -- remove generated temp file
+    pcall(os.remove, exampleTempFilePath)
+
+    local seperatorIdx = exampleTempFilePath:reverse():find(directorySeperator)
+    local tempPathStringLength = #exampleTempFilePath - seperatorIdx
+
+    return exampleTempFilePath:sub(1, tempPathStringLength)
+end
+
+tempDir = getTempPath()
 
 function join_paths(...)
     local arg={...}
