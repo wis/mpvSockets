@@ -1,19 +1,16 @@
 # mpvSockets
-create one sockets per mpv instance (with the instance's process **ID** (PID), (**unique**)), instead of one socket for the last started instance
+creates a socket for each instance of mpv started, name of the socket is based on the process ID of the mpv instance.
 
-dangling sockets for crashed or killed instances is an issue, 
-not sure if this script should handle/remove them or the clients/users, or both.
+dangling sockets for crashed or killed mpv processes is an issue, i'm not sure if this script should handle/remove them or the clients/users, or both.
 
 # Installation
 Download the single script file to your mpv-scripts-directory
 ## Linux / unixes:
 ``` bash
-curl "https://raw.githubusercontent.com/wis/mpvSockets/master/mpvSockets.lua" --create-dirs -o "$Your_Mpv_Scripts_Directory_Location/mpvSockets.lua"
+your_mpv_config_dir_path="$HOME/.config/mpv";
+curl "https://raw.githubusercontent.com/wis/mpvSockets/master/mpvSockets.lua" --create-dirs -o "$your_mpv_config_dir_path/scripts/mpvSockets.lua"
 ```
-if you're on Linux, most likely the location is `~/.config/mpv/scripts`, so run this before:
-``` bash
-$Your_Mpv_Scripts_Directory_Location=$HOME/config/mpv/scripts
-```
+
 ## Windows (untested)
 powershell:
 ``` powershell
